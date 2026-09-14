@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="JARVIS Web — voice-first personal AI interface">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>JARVIS Web</title>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-dot"></span><strong>JARVIS</strong><small>WEB CORE</small></div>
+    <div class="status"><span id="statusDot"></span><span id="statusText">READY</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="orb-wrap">
+        <div id="orb" class="orb"><div class="orb-core"></div></div>
+      </div>
+      <p class="eyebrow">PERSONAL AI // VOICE-FIRST</p>
+      <h1 id="greeting">Good to see you.</h1>
+      <p class="sub">Speak naturally or type a command. Your local memory stays on this device unless you configure an external backend.</p>
+    </section>
+
+    <section class="console panel">
+      <div class="panel-head">
+        <span>CONVERSATION</span>
+        <button id="clearChat" class="ghost">CLEAR</button>
+      </div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+
+      <form id="form" class="composer">
+        <input id="input" autocomplete="off" placeholder="Ask JARVIS..." aria-label="Message">
+        <button class="send" type="submit">SEND</button>
+      </form>
+      <button id="mic" class="mic"><span>🎙</span><span id="micText">START VOICE</span></button>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-head"><span>AGENT TOOLS</span><span class="muted">LOCAL</span></div>
+        <div class="tools">
+          <button data-command="What time is it?">TIME</button>
+          <button data-command="What is today's date?">DATE</button>
+          <button data-command="What do you remember?">MEMORY</button>
+          <button data-command="What can you do?">HELP</button>
+        </div>
+      </div>
+
+      <div class="panel memory-panel">
+        <div class="panel-head"><span>MEMORY CORE</span><span id="memoryCount">0</span></div>
+        <div id="memoryPreview" class="memory-preview">No memories stored.</div>
+        <button id="memorySettings" class="outline">MEMORY SETTINGS</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="settings">
+    <div class="modal">
+      <div class="panel-head"><span>JARVIS SETTINGS</span><button id="closeSettings" class="ghost">✕</button></div>
+      <label>AI BACKEND ENDPOINT
+        <input id="endpoint" placeholder="https://your-backend.example/api/chat">
+      </label>
+      <p class="hint">Optional. Keep API keys on the server, never in this public site.</p>
+      <label class="check"><input id="autoSpeak" type="checkbox" checked> Automatically speak responses</label>
+      <label class="check"><input id="saveUser" type="checkbox" checked> Save useful memory locally</label>
+      <button id="wipeMemory" class="danger">WIPE LOCAL MEMORY</button>
+      <button id="saveSettings" class="send full">SAVE</button>
+    </div>
+  </dialog>
+
+  <script src="memory.js"></script>
+  <script src="agent.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
